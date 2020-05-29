@@ -12,6 +12,7 @@ class Bear(IPlayer):
 
     def __init__(self, labyrinth):
         self.labyrinth = labyrinth
+        self.bite = 5
 
 
 # TODO: how to store item in inventory
@@ -29,20 +30,10 @@ class Bear(IPlayer):
         # print(f'Player current pos: {self.player_curr_pos}')
         # return self.player_curr_pos
 
+    def bear_hit(self, target):
+        return target.damage(self.bite)
+
     def move(self, move_direction):
-        # TODO: player picks up trophhy
-
-        # self.player_curr_pos = self.labyrinth.entry_coor
-
-        # print(f'Player current pos: {self.player_curr_pos}')
-
-        # if move_direction == None:
-        #         curr_row, curr_col = self.labyrinth.entry_coor
-        
-        # # movement
-        # else:
-
-        # move_direction = random.choice(list(Direction))
 
         curr_row, curr_col = self.bear_curr_pos
 
