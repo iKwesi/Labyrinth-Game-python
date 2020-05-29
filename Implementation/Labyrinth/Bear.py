@@ -1,3 +1,4 @@
+import sys
 import random
 
 from Helpers.IPlayer import IPlayer
@@ -12,7 +13,7 @@ class Bear(IPlayer):
 
     def __init__(self, labyrinth):
         self.labyrinth = labyrinth
-        self.bite = 5
+        self.bite = 1
 
 
 # TODO: how to store item in inventory
@@ -61,8 +62,11 @@ class Bear(IPlayer):
                 curr_col -= 1
         self.bear_curr_pos = curr_row,curr_col
         if self.bear_curr_pos == self.labyrinth.player.player_curr_pos:
-            self.bear_hit(self.labyrinth.player)
+            hit = self.bear_hit(self.labyrinth.player)
             print(f'The bear bit you')
+            if hit:
+                print(f'Game Over...')
+                sys.exit(0)
             dir = random.choice(list(Direction))
             self.labyrinth.player.player_curr_pos = self.labyrinth.player.move(dir.name)
             print(f'player moved {dir.name}')

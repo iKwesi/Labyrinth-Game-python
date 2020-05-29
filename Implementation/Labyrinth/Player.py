@@ -14,7 +14,8 @@ class Player(IPlayer):
         self.labyrinth = labyrinth
         self.treasure_loc = self.labyrinth.treasure
         self.item = self.labyrinth.treasure_item
-        self.live = 10
+        self.live = 2
+        self.is_dead = False
         # self.move_direction = None
         # self.player_curr_pos = ()
         # self.player_current_pos()
@@ -37,10 +38,16 @@ class Player(IPlayer):
 
     def damage(self, bite):
         self.live = self.live - bite
-        if self.live > 0:
-            return True
+        if self.live <= 0:
+            print('You were killed...')
+            self.is_dead = True
         else:
-            return False
+            print(f'You have {self.live} live(s) left')
+        return self.is_dead
+
+    # def check_live(self):
+    #     if self.live <= 0:
+    #         print('You were killed!!!')
              
     def move(self, move_direction):
 

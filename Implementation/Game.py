@@ -55,11 +55,15 @@ class Game(IGame):
                         manager.play_movement(labyrinth.id, user_input)
                         bear_direction = random.choice(list(Direction))
                         manager.bear_movement(labyrinth.id, bear_direction)
+
+
+                        
                     elif user_input.lower() == 'quit':
                         user_input = input('Are you sure you want to quit [y/n]: ')
                         if user_input.lower() == 'y':  
                             print('Thank you for playing')
-                            break
+                            sys.exit(0)
+                            # break
                     else:
                         print('invalid command') # work on this to get the error message if user enters garbage
                         continue
