@@ -22,6 +22,8 @@ class Bear(IPlayer):
         if move_direction == None:
             # self.player_curr_pos = self.labyrinth.entry_coor  # create bear current pos
             self.bear_curr_pos = self.labyrinth.generation_path[random.randint(1, self.labyrinth.num_rows)]
+            if self.bear_curr_pos == self.labyrinth.player.player_curr_pos:
+                self.bear_hit(self.labyrinth.player)
             return self.bear_curr_pos
         else:
              self.move(move_direction)
@@ -58,6 +60,12 @@ class Bear(IPlayer):
             else:
                 curr_col -= 1
         self.bear_curr_pos = curr_row,curr_col
+        if self.bear_curr_pos == self.labyrinth.player.player_curr_pos:
+            self.bear_hit(self.labyrinth.player)
+            print(f'The bear bit you')
+            dir = random.choice(list(Direction))
+            self.labyrinth.player.player_curr_pos = self.labyrinth.player.move(dir.name)
+            print(f'player moved {dir.name}')
         print(f'bear now at: {self.bear_curr_pos}')
 
         return self.bear_curr_pos
