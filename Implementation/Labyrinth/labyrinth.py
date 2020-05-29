@@ -26,6 +26,8 @@ class Labyrinth(ILabyrinth):
         self.grid = self.initial_grid
         self.generate_labyrinth((0, 0))
         self.treasure = self.place_treasure()
+        self.treasure_item = Treasure(self).name
+        # self.treasure = Treasure(self)
         # self.player_pos = ()
         self.player = Player(self)
         self.bear = Bear(self)
@@ -162,25 +164,25 @@ class Labyrinth(ILabyrinth):
         # player = Player(self)
         if dir == None:
             player_pos = self.player.get_player_pos()
+            # if player_pos == self.place_treasure():
+            #     self.player.get_item()
             print(f'player_curr {player_pos}')
             # return self.player_pos
         else:
             player_pos = self.player.get_player_pos(dir)
+            # if player_pos == self.place_treasure():
+            #     self.player.get_item()
             # player_pos = self.player.player_curr_pos
             # return self.player_pos
         return player_pos
 
 
     def place_bear(self, dir = None):
-        # player = Player(self)
-        # bear_pos = self.bear.get_player_pos()
-        # print(f'bear_curr {bear_pos}')
         if dir == None:
             bear_pos = self.bear.get_player_pos()
             print(f'bear_curr {bear_pos}')
-            # return self.player_pos
+           
         else:
             bear_pos = self.bear.get_player_pos(dir)
-            # player_pos = self.player.player_curr_pos
-            # return self.player_pos
+ 
         return bear_pos

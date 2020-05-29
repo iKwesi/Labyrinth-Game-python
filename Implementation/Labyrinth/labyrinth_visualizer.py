@@ -39,14 +39,13 @@ class Visualizer(IVisualizer):
         # Plot the walls on the figure
         self.plot_walls()
 
+        
+
         # plot the treasure
         self.plot_treasure()
 
         # plot the player
-        # if self.has_moved:
-        #     self.plot_player_move(dir)
-        # else:
-        #     self.plot_player()
+
         self.plot_player()
 
         self.plot_bear()
@@ -110,9 +109,11 @@ class Visualizer(IVisualizer):
     def plot_treasure(self):
         img = mpimg.imread('./treasure.jpg')
         imagebox = OffsetImage(img, zoom = 0.3)
-        
-        ab = AnnotationBbox(imagebox, (0.5 + self.labyrinth.treasure[0][1],
-                                0.5 + self.labyrinth.treasure[0][0]))
+        coord = self.labyrinth.treasure
+        # ab = AnnotationBbox(imagebox, (0.5 + self.labyrinth.treasure[0][1],
+        #                         0.5 + self.labyrinth.treasure[0][0]))
+        ab = AnnotationBbox(imagebox, (0.5 + coord[0][1],
+                                0.5 + coord[0][0]))
         
         self.ax.add_artist(ab)
         plt.draw()
@@ -122,8 +123,8 @@ class Visualizer(IVisualizer):
 
         path_img2 = '/Users/rapha/Downloads/Documents/Software_Engineering/player.png'
 
-        img2 = Image.open(path_img2)
-        img2 = img2.resize((80,90),Image.ANTIALIAS)
+        img2 = Image.open(path_img2).resize((80,90), Image.ANTIALIAS)
+        # img2 = img2.resize((80,90),Image.ANTIALIAS)
         coord = self.labyrinth.place_player()
         imagebox = OffsetImage(img2, zoom = 0.4)
         ab2 = AnnotationBbox(imagebox, (0.5 + coord[1],

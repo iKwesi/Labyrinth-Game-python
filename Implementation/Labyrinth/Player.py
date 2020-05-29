@@ -14,21 +14,24 @@ class Player(IPlayer):
         self.inventory = []
         # self.id = id
         self.labyrinth = labyrinth
-        # self.item = Treasure()
+        self.treasure_loc = self.labyrinth.treasure
+        self.item = self.labyrinth.treasure_item
         # self.move_direction = None
         # self.player_curr_pos = ()
         # self.player_current_pos()
         # self.has_moved = False
 
 # TODO: how to store item in inventory
-    # def get_item(self):
-    #     self.inventory.append(self.item)
-    #     print(f'{self.item.name} item added to inventory')
+    def get_item(self):
+        self.inventory.append(self.item)
+        print(f'{self.item} item added to inventory')
 
     def get_player_pos(self, move_direction = None):
         # if not self.has_moved:
         if move_direction == None:
             self.player_curr_pos = self.labyrinth.entry_coor
+            if self.player_curr_pos == self.treasure_loc[0]:
+                self.get_item()
             return self.player_curr_pos
         else:
              self.move(move_direction)
@@ -73,6 +76,8 @@ class Player(IPlayer):
             else:
                 curr_col -= 1
         self.player_curr_pos = curr_row,curr_col
+        if self.player_curr_pos == self.treasure_loc[0]:
+            self.get_item()
         print(f'Player now at: {self.player_curr_pos}')
 
         return self.player_curr_pos
