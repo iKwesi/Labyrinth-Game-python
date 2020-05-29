@@ -9,22 +9,21 @@ from Implementation.Labyrinth.treasure import Treasure
 class Player(IPlayer):
 
     def __init__(self, labyrinth):
-        # self.row = row
-        # self.col = col
+
         self.inventory = []
-        # self.id = id
         self.labyrinth = labyrinth
         self.treasure_loc = self.labyrinth.treasure
         self.item = self.labyrinth.treasure_item
+        self.live = 10
         # self.move_direction = None
         # self.player_curr_pos = ()
         # self.player_current_pos()
         # self.has_moved = False
 
-# TODO: how to store item in inventory
     def get_item(self):
         self.inventory.append(self.item)
-        print(f'{self.item} item added to inventory')
+        # print(f'{self.item} item added to inventory')
+        print(f'step executed, {self.item}')
 
     def get_player_pos(self, move_direction = None):
         # if not self.has_moved:
@@ -35,23 +34,15 @@ class Player(IPlayer):
             return self.player_curr_pos
         else:
              self.move(move_direction)
-        # elif self.has_moved:
-        # self.player_curr_pos = self.labyrinth.entry_coor
-        # print(f'Player current pos: {self.player_curr_pos}')
-        # return self.player_curr_pos
 
+    def damage(self, bite):
+        self.live = self.live - bite
+        if self.live > 0:
+            return True
+        else:
+            return False
+             
     def move(self, move_direction):
-        # TODO: player picks up trophhy
-
-        # self.player_curr_pos = self.labyrinth.entry_coor
-
-        # print(f'Player current pos: {self.player_curr_pos}')
-
-        # if move_direction == None:
-        #         curr_row, curr_col = self.labyrinth.entry_coor
-        
-        # # movement
-        # else:
 
         curr_row, curr_col = self.player_curr_pos
 
