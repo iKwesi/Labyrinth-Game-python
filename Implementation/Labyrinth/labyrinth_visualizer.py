@@ -39,8 +39,8 @@ class Visualizer(IVisualizer):
         # Plot the walls on the figure
         self.plot_walls()
 
-        
-
+        #plot wormhole
+        self.plot_wormhole()
         # plot the treasure
         self.plot_treasure()
 
@@ -67,6 +67,8 @@ class Visualizer(IVisualizer):
         # Plot the walls on the figure
         self.plot_walls()
 
+        #plot wormholes
+        self.plot_wormhole()
         # plot the treasure
         self.plot_treasure()
 
@@ -117,6 +119,18 @@ class Visualizer(IVisualizer):
         
         self.ax.add_artist(ab)
         plt.draw()
+
+    def plot_wormhole(self):
+        img_path = '/Users/rapha/Downloads/Documents/Software_Engineering/wormhole.jpg'
+        img = Image.open(img_path).resize((80,90), Image.ANTIALIAS)
+        imagebox = OffsetImage(img, zoom = 0.4)
+        coord = self.labyrinth.wormhole
+        for i in range(len(coord)):
+            ab = AnnotationBbox(imagebox, (0.5 + coord[i][1],
+                                0.5 + coord[i][0]))
+        
+            self.ax.add_artist(ab)
+            plt.draw()
 
     def plot_player(self):
         # player_img = mpimg.imread('./player.png')
