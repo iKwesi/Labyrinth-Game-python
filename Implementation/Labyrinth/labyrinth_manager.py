@@ -108,6 +108,16 @@ class LabyrinthManager(ILabyrinth_Manager):
         
         return lab.place_bear(move)
 
+    # def next_wormhole(self, lab_id):
+    #     lab = self.get_labyrinth(lab_id):
+    #     return lab.
+
+    def next_wormhole(self,lab_id):
+        lab = self.get_labyrinth(lab_id)
+        return lab.next_wormhole()
+
+        # return lab.next_hole
+
         # player = Player(lab)
         # # if move == Direction.Up.name:
         # player.move('Up') # get user input

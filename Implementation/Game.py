@@ -54,9 +54,10 @@ class Game(IGame):
                     elif user_input.lower() in Direction.__members__:
                         manager.play_movement(labyrinth.id, user_input)
                         bear_direction = random.choice(list(Direction))
-                        manager.bear_movement(labyrinth.id, bear_direction)
+                        manager.bear_movement(labyrinth.id, bear_direction)     
 
-
+                    elif user_input.lower() == 'skip':
+                        manager.next_wormhole(labyrinth.id)
                         
                     elif user_input.lower() == 'quit':
                         user_input = input('Are you sure you want to quit [y/n]: ')

@@ -28,9 +28,11 @@ class Labyrinth(ILabyrinth):
         self.generate_labyrinth((0, 0))
         self.treasure = self.place_treasure()
         self.treasure_item = Treasure(self).name
-        self.wormhole = self.place_wormhole()
-        # self.player_pos = ()
         self.player = Player(self)
+        # self.wormhole = self.place_wormhole()
+        self.wormhole = Wormhole(self).location()
+        # self.player_pos = ()
+        
         self.bear = Bear(self)
         # self.player_pos = self.place_player()
 
@@ -187,6 +189,24 @@ class Labyrinth(ILabyrinth):
  
         return bear_pos
 
-    def place_wormhole(self):
-        wormhole = Wormhole(self)
-        return wormhole.location()
+    # def place_wormhole(self):
+    #     # wormhole = Wormhole(self)
+    #     return self.wormhole.location()
+
+    # def next_wormhole(self):
+    #     # worm_idx = (self.wormhole.index(self.player.player_curr_pos) + 1) % 5
+    #     worm_idx = (self.wormhole.wormholes.index(self.player.player_curr_pos) + 1) % 5
+    #     print(f'worm_idx: {worm_idx}')
+    #     print(f'next_worm: {self.wormhole.wormholes[worm_idx]}')
+    # #     return self.location()[worm_idx]
+    #     return self.wormhole.wormholes[worm_idx]
+
+    def next_wormhole(self):
+        # worm_idx = (self.wormhole.index(self.player.player_curr_pos) + 1) % 5
+        worm_idx = (self.wormhole.index(self.player.player_curr_pos) + 1) % 5
+        print(f'worm_idx: {worm_idx}')
+        print(f'next_worm: {self.wormhole[worm_idx]}')
+        self.player.player_curr_pos  = self.wormhole[worm_idx]
+        print(f'player_worm_at: {self.player.player_curr_pos}')
+        # return self.wormhole[worm_idx]
+        return self.player.player_curr_pos

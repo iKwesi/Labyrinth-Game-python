@@ -48,6 +48,13 @@ class Player(IPlayer):
     # def check_live(self):
     #     if self.live <= 0:
     #         print('You were killed!!!')
+
+    
+    # def move_to_next_wormhole(self):
+    #     worm_idx = (self.labyrinth.wormhole.index(self.player_curr_pos) + 1) % 5
+    #     print(f'worm_idx: {worm_idx}')
+    #     return self.labyrinth.place_wormhole()[worm_idx]
+    #     # return self.location()[worm_idx]
              
     def move(self, move_direction):
 
@@ -76,6 +83,12 @@ class Player(IPlayer):
         self.player_curr_pos = curr_row,curr_col
         if self.player_curr_pos == self.treasure_loc[0]:
             self.get_item()
+
+        # elif self.player_curr_pos in self.labyrinth.place_wormhole():
+        elif self.player_curr_pos in self.labyrinth.wormhole:
+            print(f'You fell into a wormhole')
+            # self.player_curr_pos = self.labyrinth.next_wormhole()
+
         print(f'Player now at: {self.player_curr_pos}')
 
         return self.player_curr_pos
