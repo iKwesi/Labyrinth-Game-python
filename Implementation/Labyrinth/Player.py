@@ -32,6 +32,8 @@ class Player(IPlayer):
             self.player_curr_pos = self.labyrinth.entry_coor
             if self.player_curr_pos == self.treasure_loc[0]:
                 self.get_item()
+            elif self.player_curr_pos in self.labyrinth.wormhole:
+                print(f'You fell into a wormhole')
             return self.player_curr_pos
         else:
              self.move(move_direction)
