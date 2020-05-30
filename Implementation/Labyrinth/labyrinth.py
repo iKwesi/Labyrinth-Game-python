@@ -5,6 +5,7 @@ from Implementation.Labyrinth.cell import Cell
 from Implementation.Labyrinth.treasure import Treasure
 from Implementation.Labyrinth.Player import Player
 from Implementation.Labyrinth.Bear import Bear
+from Implementation.Labyrinth.wormhole import Wormhole
 
 from Helpers.ILabyrinth import ILabyrinth
 
@@ -27,7 +28,7 @@ class Labyrinth(ILabyrinth):
         self.generate_labyrinth((0, 0))
         self.treasure = self.place_treasure()
         self.treasure_item = Treasure(self).name
-        # self.treasure = Treasure(self)
+        self.wormhole = self.place_wormhole()
         # self.player_pos = ()
         self.player = Player(self)
         self.bear = Bear(self)
@@ -125,7 +126,7 @@ class Labyrinth(ILabyrinth):
                 self.grid[k_next][l_next].remove_walls(k_curr, l_curr)   # Remove walls between neighbours
                 self.grid[k_next][l_next].visited = True                 # Move to that neighbour
                 k_curr = k_next
-                l_curr = l_next
+                l_curr = l_next 
                 path.append((k_curr, l_curr))   # Add coordinates to part of generation path
                 visit_counter += 1
 
@@ -159,7 +160,6 @@ class Labyrinth(ILabyrinth):
         
         return loc
     
-    # @dispatch(str)
     def place_player(self, dir = None):
         # player = Player(self)
         if dir == None:
@@ -186,3 +186,7 @@ class Labyrinth(ILabyrinth):
             bear_pos = self.bear.get_player_pos(dir)
  
         return bear_pos
+
+    def place_wormhole(self):
+        wormhole = Wormhole(self)
+        return wormhole.location()
