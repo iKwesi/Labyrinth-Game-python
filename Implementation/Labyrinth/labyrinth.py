@@ -30,12 +30,12 @@ class Labyrinth(ILabyrinth):
         self.treasure = self.place_treasure()
         self.treasure_item = Treasure(self).name
         self.player = Player(self)
-        # self.wormhole = self.place_wormhole()
+        self.river = self.place_river()
         self.wormhole = Wormhole(self).location()
         # self.player_pos = ()
         
         self.bear = Bear(self)
-        self.river = self.place_river()
+        
         # self.player_pos = self.place_player()
 
     def generate_grid(self): 
