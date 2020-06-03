@@ -6,6 +6,7 @@ from Implementation.Labyrinth.treasure import Treasure
 from Implementation.Labyrinth.Player import Player
 from Implementation.Labyrinth.Bear import Bear
 from Implementation.Labyrinth.wormhole import Wormhole
+from Implementation.Labyrinth.river import River
 
 from Helpers.ILabyrinth import ILabyrinth
 
@@ -34,6 +35,7 @@ class Labyrinth(ILabyrinth):
         # self.player_pos = ()
         
         self.bear = Bear(self)
+        self.river = self.place_river()
         # self.player_pos = self.place_player()
 
     def generate_grid(self): 
@@ -210,3 +212,8 @@ class Labyrinth(ILabyrinth):
         print(f'player_worm_at: {self.player.player_curr_pos}')
         # return self.wormhole[worm_idx]
         return self.player.player_curr_pos
+
+    def place_river(self):
+        riv = River(self)
+        river = riv.location()
+        return river
