@@ -13,7 +13,9 @@ class Player(IPlayer):
         self.inventory = []
         self.labyrinth = labyrinth
         self.treasure_loc = self.labyrinth.treasure
-        self.item = self.labyrinth.treasure_item
+        self.map_loc = self.labyrinth.map
+        self.treasure = self.labyrinth.treasure_item
+        self.map = self.labyrinth.map_item
         self.live = 2
         self.is_dead = False
         # self.move_direction = None
@@ -21,19 +23,23 @@ class Player(IPlayer):
         # self.player_current_pos()
         # self.has_moved = False
 
-    def get_item(self):
-        self.inventory.append(self.item)
+    def get_item(self,item):
+        self.inventory.append(item)
         # print(f'{self.item} item added to inventory')
-        print(f'step executed, {self.item}')
+        print(f'step executed, {item}')
 
     def get_player_pos(self, move_direction = None):
         # if not self.has_moved:
         if move_direction == None:
             self.player_curr_pos = self.labyrinth.entry_coor
             if self.player_curr_pos == self.treasure_loc[0]:
-                self.get_item()
+                self.get_item(self.treasure)
+            elif self.player_curr_pos == self.map_loc[0]:
+                self.get_item(self.map)
             elif self.player_curr_pos in self.labyrinth.wormhole:
                 print(f'You fell into a wormhole')
+            elif self.player_curr_pos in self.labyrinth.river:
+                print(f'You fell into a river')
             return self.player_curr_pos
         else:
              self.move(move_direction)
@@ -84,7 +90,10 @@ class Player(IPlayer):
                 curr_col -= 1
         self.player_curr_pos = curr_row,curr_col
         if self.player_curr_pos == self.treasure_loc[0]:
-            self.get_item()
+            self.get_item(self.treasure)
+
+        elif self.player_curr_pos == self.map_loc[0]:
+            self.get_item(self.map)
 
         # elif self.player_curr_pos in self.labyrinth.place_wormhole():
         elif self.player_curr_pos in self.labyrinth.wormhole:

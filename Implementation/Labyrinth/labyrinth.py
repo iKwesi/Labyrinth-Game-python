@@ -31,6 +31,7 @@ class Labyrinth(ILabyrinth):
         self.treasure = self.place_treasure()
         self.treasure_item = Treasure(self).name
         self.map = self.place_map()
+        self.map_item = Map(self).name
         self.player = Player(self)
         self.river = self.place_river()
         self.wormhole = Wormhole(self).location()
