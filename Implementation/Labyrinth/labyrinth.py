@@ -7,6 +7,7 @@ from Implementation.Labyrinth.Player import Player
 from Implementation.Labyrinth.Bear import Bear
 from Implementation.Labyrinth.wormhole import Wormhole
 from Implementation.Labyrinth.river import River
+from Implementation.Labyrinth.map import Map
 
 from Helpers.ILabyrinth import ILabyrinth
 
@@ -29,6 +30,7 @@ class Labyrinth(ILabyrinth):
         self.generate_labyrinth((0, 0))
         self.treasure = self.place_treasure()
         self.treasure_item = Treasure(self).name
+        self.map = self.place_map()
         self.player = Player(self)
         self.river = self.place_river()
         self.wormhole = Wormhole(self).location()
@@ -156,10 +158,18 @@ class Labyrinth(ILabyrinth):
             return True
         return False
 
+    #TODO: create service for placing object on labyrinth
     def place_treasure(self):
         # pylint: disable = no-value-for-parameter
         tresh = Treasure(self)
         loc = tresh.location()
+        # print(f'treasue: {loc}')
+        
+        return loc
+
+    def place_map(self):
+        map = Map(self)
+        loc = map.location()
         # print(f'treasue: {loc}')
         
         return loc

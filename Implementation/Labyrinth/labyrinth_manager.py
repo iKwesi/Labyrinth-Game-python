@@ -112,9 +112,9 @@ class LabyrinthManager(ILabyrinth_Manager):
     #     lab = self.get_labyrinth(lab_id):
     #     return lab.
 
-    def next_wormhole(self,lab_id):
-        lab = self.get_labyrinth(lab_id)
-        return lab.next_wormhole()
+    # def next_wormhole(self,lab_id):
+    #     lab = self.get_labyrinth(lab_id)
+    #     return lab.next_wormhole()
 
         # return lab.next_hole
 
