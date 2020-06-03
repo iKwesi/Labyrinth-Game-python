@@ -41,6 +41,10 @@ class Visualizer(IVisualizer):
 
         #plot wormhole
         self.plot_wormhole()
+
+        #plot river
+        self.plot_river()
+
         # plot the treasure
         self.plot_treasure()
 
@@ -69,6 +73,10 @@ class Visualizer(IVisualizer):
 
         #plot wormholes
         self.plot_wormhole()
+
+        #plot river
+        self.plot_river()
+
         # plot the treasure
         self.plot_treasure()
 
@@ -125,6 +133,18 @@ class Visualizer(IVisualizer):
         img = Image.open(img_path).resize((80,90), Image.ANTIALIAS)
         imagebox = OffsetImage(img, zoom = 0.4)
         coord = self.labyrinth.wormhole
+        for i in range(len(coord)):
+            ab = AnnotationBbox(imagebox, (0.5 + coord[i][1],
+                                0.5 + coord[i][0]))
+        
+            self.ax.add_artist(ab)
+            plt.draw()
+
+    def plot_river(self):
+        img_path = './river.jpg'
+        img = Image.open(img_path).resize((80,90), Image.ANTIALIAS)
+        imagebox = OffsetImage(img, zoom = 0.4)
+        coord = self.labyrinth.river
         for i in range(len(coord)):
             ab = AnnotationBbox(imagebox, (0.5 + coord[i][1],
                                 0.5 + coord[i][0]))
