@@ -25,6 +25,12 @@ class Visualizer(IVisualizer):
         self.media_filename = media_filename
         self.has_moved = False
 
+        self.bear_path = './bear.png'
+        self.player_path = './player.png'
+        self.wormhole_path = './wormhole.jpg'
+        self.map_path = './map.jpg'
+        self.treasure_path = './treasure.jpg'
+
     def set_media_filename(self, filename):
         """Sets the filename """
         self.media_filename = filename
@@ -47,6 +53,9 @@ class Visualizer(IVisualizer):
 
         # plot the treasure
         self.plot_treasure()
+
+        # plot map
+        self.plot_map()
 
         # plot the player
 
@@ -79,6 +88,9 @@ class Visualizer(IVisualizer):
 
         # plot the treasure
         self.plot_treasure()
+
+        # plot map
+        self.plot_map()
 
         # plot the player
 
@@ -117,8 +129,9 @@ class Visualizer(IVisualizer):
                                  [(i+1)*self.cell_size, i*self.cell_size], color="k")
 
     def plot_treasure(self):
-        img = mpimg.imread('./treasure.jpg')
-        imagebox = OffsetImage(img, zoom = 0.3)
+        # img = mpimg.imread('./treasure.jpg')
+        img = Image.open(self.treasure_path).resize((80,90), Image.ANTIALIAS)
+        imagebox = OffsetImage(img, zoom = 0.4)
         coord = self.labyrinth.treasure
         # ab = AnnotationBbox(imagebox, (0.5 + self.labyrinth.treasure[0][1],
         #                         0.5 + self.labyrinth.treasure[0][0]))
@@ -128,9 +141,18 @@ class Visualizer(IVisualizer):
         self.ax.add_artist(ab)
         plt.draw()
 
+    def plot_map(self):
+        img = Image.open(self.map_path).resize((80,90), Image.ANTIALIAS)
+        imagebox = OffsetImage(img, zoom = 0.4)
+        coord = self.labyrinth.map
+        ab = AnnotationBbox(imagebox, (0.5 + coord[0][1],
+                                0.5 + coord[0][0]))
+        
+        self.ax.add_artist(ab)
+        plt.draw()
+
     def plot_wormhole(self):
-        img_path = '/Users/rapha/Downloads/Documents/Software_Engineering/wormhole.jpg'
-        img = Image.open(img_path).resize((80,90), Image.ANTIALIAS)
+        img = Image.open(self.wormhole_path).resize((80,90), Image.ANTIALIAS)
         imagebox = OffsetImage(img, zoom = 0.4)
         coord = self.labyrinth.wormhole
         for i in range(len(coord)):
@@ -153,11 +175,7 @@ class Visualizer(IVisualizer):
             plt.draw()
 
     def plot_player(self):
-        # player_img = mpimg.imread('./player.png')
-
-        path_img2 = '/Users/rapha/Downloads/Documents/Software_Engineering/player.png'
-
-        img2 = Image.open(path_img2).resize((80,90), Image.ANTIALIAS)
+        img2 = Image.open(self.player_path).resize((80,90), Image.ANTIALIAS)
         # img2 = img2.resize((80,90),Image.ANTIALIAS)
         coord = self.labyrinth.place_player()
         imagebox = OffsetImage(img2, zoom = 0.4)
@@ -169,10 +187,7 @@ class Visualizer(IVisualizer):
         plt.draw()
 
     def plot_player_move(self):
-        path_img2 = '/Users/rapha/Downloads/Documents/Software_Engineering/player.png'
-
-        img2 = Image.open(path_img2)
-        img2 = img2.resize((80,90),Image.ANTIALIAS)
+        img2 = Image.open(self.player_path).resize((80,90),Image.ANTIALIAS)
         coord = self.labyrinth.player.player_curr_pos
         imagebox = OffsetImage(img2, zoom = 0.4)
         ab2 = AnnotationBbox(imagebox, (0.5 + coord[1],
@@ -185,10 +200,9 @@ class Visualizer(IVisualizer):
     def plot_bear(self):
         # player_img = mpimg.imread('./player.png')
 
-        path_img2 = '/Users/rapha/Downloads/Documents/Software_Engineering/bear.png'
+        # path_img2 = './bear.png'
 
-        img2 = Image.open(path_img2)
-        img2 = img2.resize((80,90),Image.ANTIALIAS)
+        img2 = Image.open(self.bear_path).resize((80,90),Image.ANTIALIAS)
         coord = self.labyrinth.place_bear()
         imagebox = OffsetImage(img2, zoom = 0.4)
         ab2 = AnnotationBbox(imagebox, (0.5 + coord[1],
@@ -199,10 +213,9 @@ class Visualizer(IVisualizer):
         plt.draw()
 
     def plot_bear_move(self):
-        path_img2 = '/Users/rapha/Downloads/Documents/Software_Engineering/bear.png'
+        # path_img2 = './bear.png'
 
-        img2 = Image.open(path_img2)
-        img2 = img2.resize((80,90),Image.ANTIALIAS)
+        img2 = Image.open(self.bear_path).resize((80,90),Image.ANTIALIAS)
         coord = self.labyrinth.bear.bear_curr_pos
         imagebox = OffsetImage(img2, zoom = 0.4)
         ab2 = AnnotationBbox(imagebox, (0.5 + coord[1],
