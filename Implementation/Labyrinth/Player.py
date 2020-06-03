@@ -1,3 +1,5 @@
+import sys
+
 from Helpers.IPlayer import IPlayer
 from Helpers.Direction import Direction
 
@@ -95,13 +97,19 @@ class Player(IPlayer):
         elif self.player_curr_pos == self.map_loc[0]:
             self.get_item(self.map)
 
-        # elif self.player_curr_pos in self.labyrinth.place_wormhole():
         elif self.player_curr_pos in self.labyrinth.wormhole:
             print(f'You fell into a wormhole')
             # self.player_curr_pos = self.labyrinth.next_wormhole()
 
         elif self.player_curr_pos in self.labyrinth.river:
             print(f'You fell into a river')
+
+        elif self.player_curr_pos == self.labyrinth.exit_coor and ('Treasure' not in self.inventory):
+            print(f'You cannot leave without the treasure')
+
+        elif self.player_curr_pos == self.labyrinth.exit_coor and 'Treasure' in self.inventory:
+            print('You win, The Game has ended') # TODO: modify this and add to game class
+            sys.exit(0)
 
         print(f'Player now at: {self.player_curr_pos}')
 
