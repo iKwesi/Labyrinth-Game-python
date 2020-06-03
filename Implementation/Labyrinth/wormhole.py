@@ -19,7 +19,7 @@ class Wormhole(IGameObject):
     #     return self.location()[worm_idx]
 
     def location(self):
-        holes = [i for i in itertools.product(range(self.labyrinth.num_rows), repeat=2) if i not in self.labyrinth.river]
+        holes = [i for i in itertools.product(range(self.labyrinth.num_rows), repeat=2) if i not in self.labyrinth.river and i != self.labyrinth.exit_coor]
         wormholes = random.sample(holes, 5)
         # treasure.append(self.labyrinth.generation_path[random.randint(1, self.labyrinth.num_rows)])
         print(f'wormholes location: {wormholes}')
