@@ -83,8 +83,12 @@ class LabyrinthManager(ILabyrinth_Manager):
 
     def show_labyrinth_play(self, id, cell_size = 1):
         """ Show the player move on labyrinth"""
-        vis = Visualizer(self.get_labyrinth(id), cell_size, self.media_name)
-        vis.show_labyrinth_play()
+        lab = self.get_labyrinth(id)
+        vis = Visualizer(lab, cell_size, self.media_name)
+        if 'Map' in lab.player.inventory:
+            vis.show_labyrinth_play()
+        else:
+            print(f'You do not have map in your inventory')
         
     def set_filename(self, filename):
         """
