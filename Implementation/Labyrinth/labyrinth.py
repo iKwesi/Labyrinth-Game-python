@@ -217,3 +217,18 @@ class Labyrinth(ILabyrinth):
         riv = River(self)
         river = riv.location()
         return river
+
+    def skip_move(self):
+        if self.player.player_curr_pos in self.wormhole:
+            self.player.player_curr_pos = self.next_wormhole()
+        elif self.player.player_curr_pos in self.river:
+            idx = self.river.index(self.player.player_curr_pos)
+            if idx + 2 < len(self.river):
+                self.player.player_curr_pos = self.river[idx + 2]
+                print(f'You moved two steps down the river stream')
+            else:
+                self.player.player_curr_pos = self.river[-1]
+                print(f'You moved to the end of the river')
+        else:
+            print(f'You skipped your turn')
+        return self.player.player_curr_pos

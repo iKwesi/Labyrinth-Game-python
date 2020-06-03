@@ -57,7 +57,8 @@ class Game(IGame):
                         manager.bear_movement(labyrinth.id, bear_direction)     
 
                     elif user_input.lower() == 'skip':
-                        manager.next_wormhole(labyrinth.id)
+                        # manager.next_wormhole(labyrinth.id)
+                        manager.skip_turn(labyrinth.id)
                         
                     elif user_input.lower() == 'quit':
                         user_input = input('Are you sure you want to quit [y/n]: ')

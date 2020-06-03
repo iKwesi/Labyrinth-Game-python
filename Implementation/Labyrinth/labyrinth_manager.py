@@ -118,8 +118,6 @@ class LabyrinthManager(ILabyrinth_Manager):
 
         # return lab.next_hole
 
-        # player = Player(lab)
-        # # if move == Direction.Up.name:
-        # player.move('Up') # get user input
-        # player.move('Left')
-            
+    def skip_turn(self, lab_id):
+        lab = self.get_labyrinth(lab_id)
+        return lab.skip_move()

@@ -91,6 +91,9 @@ class Player(IPlayer):
             print(f'You fell into a wormhole')
             # self.player_curr_pos = self.labyrinth.next_wormhole()
 
+        elif self.player_curr_pos in self.labyrinth.river:
+            print(f'You fell into a river')
+
         print(f'Player now at: {self.player_curr_pos}')
 
         return self.player_curr_pos
