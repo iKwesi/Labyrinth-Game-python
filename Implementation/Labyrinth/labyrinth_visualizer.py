@@ -57,7 +57,9 @@ class Visualizer(IVisualizer):
         else: pass
 
         # plot map
-        self.plot_map()
+        if self.labyrinth.map_item not in self.labyrinth.player.inventory:
+            self.plot_map()
+        else: pass
 
         # plot the player
 
@@ -95,7 +97,9 @@ class Visualizer(IVisualizer):
             pass
 
         # plot map
-        self.plot_map()
+        if self.labyrinth.map_item not in self.labyrinth.player.inventory:
+            self.plot_map()
+        else: pass
 
         # plot the player
 
