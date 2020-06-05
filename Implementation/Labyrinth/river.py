@@ -52,5 +52,5 @@ class River(IGameObject):
             #     self.labyrinth.player.player_curr_pos = self.labyrinth.player.move(dir.name)
             #     print(f'player moved in river')
             # print(f'bear now at: {self.bear_curr_pos}')
-        print(f'river: {river}')
+        # print(f'river: {river}')
         return river

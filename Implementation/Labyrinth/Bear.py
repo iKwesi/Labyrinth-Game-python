@@ -42,22 +42,30 @@ class Bear(IPlayer):
 
         if move_direction.name == Direction.up.name:
             if self.labyrinth.check_monolith(curr_row + 1, curr_col): # edit from here
-                print('Monolith encountered -> Up')
+                print('Bear hit monolith')
+            elif self.labyrinth.grid[curr_row][curr_col].is_walls_between(self.labyrinth.grid[curr_row + 1][curr_col]):
+                print('Bear hit wall')
             else:
                 curr_row += 1
         elif move_direction.name == Direction.down.name:
             if self.labyrinth.check_monolith(curr_row - 1, curr_col):
-                print('Monolith encountered -> Down')
+                print('Bear hit monolith')
+            elif self.labyrinth.grid[curr_row][curr_col].is_walls_between(self.labyrinth.grid[curr_row - 1][curr_col]):
+                print('Bear hit wall')
             else:
                 curr_row -= 1
         elif move_direction.name == Direction.right.name:
             if self.labyrinth.check_monolith(curr_row, curr_col + 1):
-                print('Monolith encountered -> Right')
+                print('Bear hit monolith')
+            elif self.labyrinth.grid[curr_row][curr_col].is_walls_between(self.labyrinth.grid[curr_row][curr_col + 1]):
+                print('Bear hit wall')
             else:
                 curr_col+= 1
         elif move_direction.name == Direction.left.name:
             if self.labyrinth.check_monolith(curr_row, curr_col - 1):
-                print('Monolith encountered -> Left')
+                print('Bear hit monolith')
+            elif self.labyrinth.grid[curr_row][curr_col].is_walls_between(self.labyrinth.grid[curr_row ][curr_col - 1]):
+                print('Bear hit wall')
             else:
                 curr_col -= 1
         self.bear_curr_pos = curr_row,curr_col
@@ -70,6 +78,6 @@ class Bear(IPlayer):
             dir = random.choice(list(Direction))
             self.labyrinth.player.player_curr_pos = self.labyrinth.player.move(dir.name)
             print(f'player moved {dir.name}')
-        print(f'bear now at: {self.bear_curr_pos}')
+        # print(f'bear now at: {self.bear_curr_pos}')
 
         return self.bear_curr_pos

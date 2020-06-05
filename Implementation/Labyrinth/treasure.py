@@ -15,5 +15,5 @@ class Treasure(IGameObject):
     def location(self):
         treasure = []
         treasure.append(self.labyrinth.generation_path[random.randint(1, self.labyrinth.num_rows)])
-        print(f'Treasure location: {treasure}')
+        # print(f'Treasure location: {treasure}')
         return treasure

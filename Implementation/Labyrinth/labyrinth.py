@@ -182,7 +182,7 @@ class Labyrinth(ILabyrinth):
             player_pos = self.player.get_player_pos()
             # if player_pos == self.place_treasure():
             #     self.player.get_item()
-            print(f'player_curr {player_pos}')
+            # print(f'player_curr {player_pos}')
             # return self.player_pos
         else:
             player_pos = self.player.get_player_pos(dir)
@@ -196,7 +196,7 @@ class Labyrinth(ILabyrinth):
     def place_bear(self, dir = None):
         if dir == None:
             bear_pos = self.bear.get_player_pos()
-            print(f'bear_curr {bear_pos}')
+            # print(f'bear_curr {bear_pos}')
            
         else:
             bear_pos = self.bear.get_player_pos(dir)
@@ -218,10 +218,10 @@ class Labyrinth(ILabyrinth):
     def next_wormhole(self):
         # worm_idx = (self.wormhole.index(self.player.player_curr_pos) + 1) % 5
         worm_idx = (self.wormhole.index(self.player.player_curr_pos) + 1) % 5
-        print(f'worm_idx: {worm_idx}')
-        print(f'next_worm: {self.wormhole[worm_idx]}')
+        # print(f'worm_idx: {worm_idx}')
+        # print(f'next_worm: {self.wormhole[worm_idx]}')
         self.player.player_curr_pos  = self.wormhole[worm_idx]
-        print(f'player_worm_at: {self.player.player_curr_pos}')
+        # print(f'player_worm_at: {self.player.player_curr_pos}')
         # return self.wormhole[worm_idx]
         return self.player.player_curr_pos
 

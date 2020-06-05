@@ -15,5 +15,5 @@ class Map(IGameObject):
     def location(self):
         map = []
         map.append(self.labyrinth.generation_path[random.randint(1, self.labyrinth.num_rows)])
-        print(f'Map location: {map}')
+        # print(f'Map location: {map}')
         return map
