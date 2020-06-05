@@ -72,24 +72,36 @@ class Player(IPlayer):
 
         if move_direction == Direction.up.name:
             if self.labyrinth.check_monolith(curr_row + 1, curr_col): # edit from here
-                print('Monolith encountered -> Up')
+                print('step impossible -> monolith')
+            elif self.labyrinth.grid[curr_row][curr_col].is_walls_between(self.labyrinth.grid[curr_row + 1][curr_col]):
+                print('step impossible -> wall')
             else:
                 curr_row += 1
+                print('step executed')
         elif move_direction == Direction.down.name:
             if self.labyrinth.check_monolith(curr_row - 1, curr_col):
-                print('Monolith encountered -> Down')
+                print('step impossible -> monolith')
+            elif self.labyrinth.grid[curr_row][curr_col].is_walls_between(self.labyrinth.grid[curr_row - 1][curr_col]):
+                print('step impossible -> wall')
             else:
                 curr_row -= 1
+                print('step executed')
         elif move_direction == Direction.right.name:
             if self.labyrinth.check_monolith(curr_row, curr_col + 1):
-                print('Monolith encountered -> Right')
+                print('step impossible -> monolith')
+            elif self.labyrinth.grid[curr_row][curr_col].is_walls_between(self.labyrinth.grid[curr_row][curr_col + 1]):
+                print('step impossible -> wall')
             else:
                 curr_col+= 1
+                print('step executed')
         elif move_direction == Direction.left.name:
             if self.labyrinth.check_monolith(curr_row, curr_col - 1):
-                print('Monolith encountered -> Left')
+                print('step impossible -> monolith')
+            elif self.labyrinth.grid[curr_row][curr_col].is_walls_between(self.labyrinth.grid[curr_row][curr_col - 1]):
+                print('step impossible -> wall')
             else:
                 curr_col -= 1
+                print('step executed')
         self.player_curr_pos = curr_row,curr_col
         if self.player_curr_pos == self.treasure_loc[0]:
             self.get_item(self.treasure)
@@ -98,7 +110,7 @@ class Player(IPlayer):
             self.get_item(self.map)
 
         elif self.player_curr_pos in self.labyrinth.wormhole:
-            print(f'You fell into a wormhole')
+            print(f'step executed -> wormhole')
             # self.player_curr_pos = self.labyrinth.next_wormhole()
 
         elif self.player_curr_pos in self.labyrinth.river:
@@ -111,6 +123,6 @@ class Player(IPlayer):
             print('You win, The Game has ended') # TODO: modify this and add to game class
             sys.exit(0)
 
-        print(f'Player now at: {self.player_curr_pos}')
+        # print(f'Player now at: {self.player_curr_pos}')
 
         return self.player_curr_pos
