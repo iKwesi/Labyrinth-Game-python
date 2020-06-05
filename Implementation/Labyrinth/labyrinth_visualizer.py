@@ -52,7 +52,9 @@ class Visualizer(IVisualizer):
         self.plot_river()
 
         # plot the treasure
-        self.plot_treasure()
+        if self.labyrinth.treasure_item not in self.labyrinth.player.inventory:
+            self.plot_treasure()
+        else: pass
 
         # plot map
         self.plot_map()
@@ -87,7 +89,10 @@ class Visualizer(IVisualizer):
         self.plot_river()
 
         # plot the treasure
-        self.plot_treasure()
+        if self.labyrinth.treasure_item not in self.labyrinth.player.inventory:
+            self.plot_treasure()
+        else:
+            pass
 
         # plot map
         self.plot_map()
