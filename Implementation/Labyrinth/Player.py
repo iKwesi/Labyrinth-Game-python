@@ -107,7 +107,7 @@ class Player(IPlayer):
         elif self.player_curr_pos == self.labyrinth.exit_coor and ('Treasure' not in self.inventory):
             print(f'You cannot leave without the treasure')
 
-        elif self.player_curr_pos == self.labyrinth.exit_coor and 'Treasure' in self.inventory:
+        elif self.player_curr_pos == self.labyrinth.exit_coor and self.labyrinth.treasure_item in self.inventory:
             print('You win, The Game has ended') # TODO: modify this and add to game class
             sys.exit(0)
 
