@@ -228,6 +228,12 @@ class Labyrinth(ILabyrinth):
     def place_river(self):
         riv = River(self)
         river = riv.location()
+        for i in river:
+            neighbours = self.find_neighbours(i[0],i[1])
+            if neighbours is not None:
+                r_next,c_next = random.choice(neighbours)
+                self.grid[i[0]][i[1]].remove_walls(r_next, c_next)
+                self.grid[r_next][c_next].remove_walls(i[0], i[1])
         return river
 
     def skip_move(self):

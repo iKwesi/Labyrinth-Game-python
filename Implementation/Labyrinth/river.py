@@ -23,9 +23,10 @@ class River(IGameObject):
         for i in range(river_length):
             dir = random.choice(list(Direction))
             
-            if (curr_row < 0 or curr_row >= self.labyrinth.num_rows) or (curr_col < 0 and curr_col >= self.labyrinth.num_cols):
-                break
-            else:
+            # if (curr_row < 0 or curr_row >= self.labyrinth.num_rows) or (curr_col < 0 and curr_col >= self.labyrinth.num_cols):
+            #     break
+            # else:
+            while (curr_row >= 0 or curr_row < self.labyrinth.num_rows) or (curr_col >= 0 and curr_col < self.labyrinth.num_cols):
                 if dir.name == Direction.up.name:
                         curr_row += 1
                         # river.append((curr_row,curr_col))
