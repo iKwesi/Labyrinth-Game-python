@@ -70,8 +70,8 @@ class Bear(IPlayer):
                 curr_col -= 1
         self.bear_curr_pos = curr_row,curr_col
         if self.bear_curr_pos == self.labyrinth.player.player_curr_pos:
-            hit = self.bear_hit(self.labyrinth.player)
             print(f'The bear bit you')
+            hit = self.bear_hit(self.labyrinth.player)
             if hit:
                 print(f'Game Over...')
                 sys.exit(0)
